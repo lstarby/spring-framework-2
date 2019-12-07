@@ -27,7 +27,7 @@ public class Spring {
 		 * UserService userService = (UserService) beanFactory.getBean(UserService.class);   ----->  byType
 		 * 异常栈：com.zsinda.spring.FactoryBean.UserService2 cannot be cast to com.zsinda.spring.FactoryBean.UserService
 		 * 此处如果byType的话，是没有这个问题的，因为是byName，并且UserService实现了FactoryBean，如果是byName的话，是getObject()里返回的对象：UserService2
-		 * 如果要在byName中返回UserService 则需要加上 & 原因：
+		 * 如果要在byName中返回UserService 本身 则需要加上 & 原因：
 		 * >--org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean
 		 *   >--  final String beanName = transformedBeanName(name); 此处做了检验
 		 *     >--org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean 此处拿到FactoryBean ->getObject()
