@@ -14,5 +14,6 @@ public class Ioc {
 		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Ioc.class);
 		Test bean = (Test) annotationConfigApplicationContext.getBean("test");
 		bean.query();
+
 	}
 }
