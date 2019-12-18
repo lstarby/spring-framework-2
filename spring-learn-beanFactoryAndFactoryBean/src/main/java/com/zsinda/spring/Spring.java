@@ -4,7 +4,6 @@ package com.zsinda.spring;
 import com.zsinda.spring.FactoryBean.UserService;
 import com.zsinda.spring.FactoryBean.UserService2;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.support.AbstractBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +18,7 @@ public class Spring {
 		 *	BeanFactory beanFactory = new AnnotationConfigApplicationContext(Spring.class);
 		 */
 		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Spring.class);
-		BeanFactory beanFactory = new AnnotationConfigApplicationContext(Spring.class);
+//		BeanFactory beanFactory = new AnnotationConfigApplicationContext(Spring.class);
 		/*
 		 * FactoryBean
 		 *
@@ -35,10 +34,10 @@ public class Spring {
 		 * FactoryBean 常常应用在一个bean对象，里面依赖了很多其他对象。经典例子SqlSessionFactoryBean
 		 *
 		 **/
-		UserService userService = (UserService) beanFactory.getBean("&userService");
-		System.out.println(userService.getMsg());
+//		UserService userService = (UserService) annotationConfigApplicationContext.getBean("&userService");
+//		System.out.println(userService.getMsg());
 
-		UserService2 userService2 = (UserService2) beanFactory.getBean("userService");
+		UserService2 userService2 = (UserService2) annotationConfigApplicationContext.getBean("userService2");
 		userService2.query();
 	}
 }

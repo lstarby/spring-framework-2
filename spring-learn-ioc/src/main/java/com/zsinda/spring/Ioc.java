@@ -1,13 +1,13 @@
 package com.zsinda.spring;
 
 
+import com.zsinda.spring.annotation.SindaComponentScan;
 import com.zsinda.spring.service.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com")
+@SindaComponentScan
 public class Ioc {
 
 	public static void main(String[] args) {
