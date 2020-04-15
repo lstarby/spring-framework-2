@@ -31,4 +31,7 @@ rootProject.children.each {project ->
 }
 include 'spring-learn-ioc'
 include 'spring-learn-beanFactoryAndFactoryBean'
+include 'spring-learn'
+include 'spring-learn:spring-learn-beanFactoryAndFactoryBean'
+findProject(':spring-learn:spring-learn-beanFactoryAndFactoryBean')?.name = 'spring-learn-beanFactoryAndFactoryBean'
 

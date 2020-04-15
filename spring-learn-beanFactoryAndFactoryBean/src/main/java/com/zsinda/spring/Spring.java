@@ -37,7 +37,7 @@ public class Spring {
 //		UserService userService = (UserService) annotationConfigApplicationContext.getBean("&userService");
 //		System.out.println(userService.getMsg());
 
-		UserService2 userService2 = (UserService2) annotationConfigApplicationContext.getBean("userService2");
+		UserService2 userService2 = (UserService2) annotationConfigApplicationContext.getBean("UserService");
 		userService2.query();
 	}
 }

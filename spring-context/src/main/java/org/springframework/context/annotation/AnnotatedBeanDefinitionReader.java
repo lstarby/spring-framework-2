@@ -214,14 +214,37 @@ public class AnnotatedBeanDefinitionReader {
 	<T> void doRegisterBean(Class<T> beanClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,
 			@Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
 
+		/**
+		 * AnnotatedGenericBeanDefinition包含了类的其他信息,比如一些元信息,类注解等
+		 */
 		AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(beanClass);
+
+		/**
+		 * 判断这个类是否需要跳过解析
+		 * 通过代码可以知道spring判断是否跳过解析，主要判断类有没有加@Condition注解
+		 */
 		if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
 			return;
 		}
-
+		/**
+		 * 创建bean实例后的回调
+		 */
 		abd.setInstanceSupplier(instanceSupplier);
+
+		/**
+		 * 类的作用域
+		 */
 		ScopeMetadata scopeMetadata = this.scopeMetadataResolver.resolveScopeMetadata(abd);
+
+		/**
+		 * 设置作用域
+		 */
 		abd.setScope(scopeMetadata.getScopeName());
+
+		/**
+		 * 生成bean的名称
+		 * 实现 org.springframework.beans.factory.support.BeanNameGenerator 可以个性化bean名称
+		 */
 		String beanName = (name != null ? name : this.beanNameGenerator.generateBeanName(abd, this.registry));
 
 		AnnotationConfigUtils.processCommonDefinitionAnnotations(abd);

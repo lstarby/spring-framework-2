@@ -174,6 +174,9 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	 */
 	@Nullable
 	protected Object getSingleton(String beanName, boolean allowEarlyReference) {
+		// 从当前 map中获取bean如果不为空直接返回，不再进行初始化工作
+		// 检查已经实例化的单例
+		// 引用当前创建的单例(解决循环引用)。
 		Object singletonObject = this.singletonObjects.get(beanName);
 		if (singletonObject == null && isSingletonCurrentlyInCreation(beanName)) {
 			synchronized (this.singletonObjects) {

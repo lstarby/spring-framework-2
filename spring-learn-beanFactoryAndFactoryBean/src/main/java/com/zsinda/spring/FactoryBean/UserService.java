@@ -8,30 +8,31 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.stereotype.Component;
 
-@Component
-public class UserService implements BeanPostProcessor, BeanFactoryPostProcessor {
+@Component("UserService")
+public class UserService implements FactoryBean<UserService2>{
+//		implements BeanPostProcessor, BeanFactoryPostProcessor {
 
-//	String msg="test";
+	String msg="test";
 
 
-//	@Override
-//	public Object getObject() throws Exception {
-//		return new UserService2();
-//	}
-//
-//	@Override
-//	public Class<?> getObjectType() {
-//		return null;
-//	}
-//
-//	@Override
-//	public boolean isSingleton() {
-//		return false;
-//	}
-//
-//	public String getMsg() {
-//		return msg;
-//	}
+	@Override
+	public UserService2 getObject() throws Exception {
+		return new UserService2();
+	}
+
+	@Override
+	public Class<?> getObjectType() {
+		return UserService2.class;
+	}
+
+	@Override
+	public boolean isSingleton() {
+		return false;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
 
 	/*
 	*
@@ -42,28 +43,28 @@ public class UserService implements BeanPostProcessor, BeanFactoryPostProcessor 
 	*          BeanPostProcessor.postProcessBeforeInitialization()
 	* 			BeanPostProcessor.postProcessAfterInitialization()
 	* */
-	@Override
-	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-		if (beanName.equals("userService2")){
-			System.out.println("BeanPostProcessor  postProcessBeforeInitialization                     1");
-
-		}
-		return null;
-	}
-
-	@Override
-	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		if (beanName.equals("userService2")) {
-			System.out.println("BeanPostProcessor  postProcessAfterInitialization                    2");
-		}
-		return null;
-	}
-
-	@Override
-	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		BeanDefinition beanDefinition = beanFactory.getBeanDefinition("userService2");
-		if (beanDefinition!=null){
-		System.out.println("BeanFactoryPostProcessor  postProcessBeanFactory                   3");
-		 }
-	}
+//	@Override
+//	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+//		if (beanName.equals("userService2")){
+//			System.out.println("BeanPostProcessor  postProcessBeforeInitialization                     1");
+//
+//		}
+//		return null;
+//	}
+//
+//	@Override
+//	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+//		if (beanName.equals("userService2")) {
+//			System.out.println("BeanPostProcessor  postProcessAfterInitialization                    2");
+//		}
+//		return null;
+//	}
+//
+//	@Override
+//	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+//		BeanDefinition beanDefinition = beanFactory.getBeanDefinition("userService2");
+//		if (beanDefinition!=null){
+//		System.out.println("BeanFactoryPostProcessor  postProcessBeanFactory                   3");
+//		 }
+//	}
 }
